@@ -44,3 +44,49 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vote-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Santiagososs/example-voting-app
+    targetRevision: main
+    path: manifests/vote
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: worker-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Santiagososs/example-voting-app
+    targetRevision: main
+    path: manifests/worker
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
