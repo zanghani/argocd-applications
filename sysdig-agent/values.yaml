@@ -1,0 +1,83 @@
+cluster_config:
+  name: henry-secure # The name of the cluster
+
+sysdig_endpoint:
+  region: us4 # Sysdig Secure instance location region. Defaults to `custom` if not specified.
+  access_key: test-test-test-test-test # Access key for Sysdig Secure instance
+
+features:
+  kubernetes_metadata:
+    enabled: true # Enable Kubernetes metadata collection for the cluster
+  admission_control:
+    enabled: true
+  
+  monitor:
+    app_checks:
+      enabled: true
+    java_management_extensions:
+      enabled: true
+    prometheus:
+      enabled: true
+      # The content of the prometheus.yaml file
+      prometheus_yaml: {}
+    statsd:
+      enabled: true
+    kubernetes_events:
+      enabled: true
+    kube_state_metrics:
+      enabled: true
+
+  posture:
+    host_posture: # with this guy we able to scan our host, instaled packages on nodes, monitor suspicious activity and apply compliances.
+      enabled: true # Enable host posture assessment
+    cluster_posture: # with this one, we can scan our used images, focusing to find used vulnerabilities, perform posture assetsessment at manifests level and monitor the kube api.
+      enabled: true # Enable cluster posture assessment
+
+  vulnerability_management:
+    host_vulnerability_management:
+      enabled: true # Enable host vulnerability management
+    container_vulnerability_management:
+      enabled: true # Enable container vulnerability management
+    in_use:
+      enabled: true # Enable retrieval of in-use packages
+
+  detections:
+    drift_control:
+      enabled: true  # Enable Drift Detection
+    malware_control:
+      enabled: true # Enable malware control detection
+    ml_policies:
+      enabled: true # Enable machine learning policies
+    kubernetes_audit:
+      enabled: true # Enable Kubernetes audit logging
+
+  investigations:
+    activity_audit:
+      enabled: true # Enable activity audit
+    live_logs:
+      enabled: true # Enable Kubernetes live logs
+    captures:
+      enabled: true # Enable System captures
+  
+  respond:
+    rapid_response:
+      enabled: false
+    response_actions:
+      enabled: false
+
+host:
+  driver: universal_ebpf # Driver for the host agent (Accepted Values: kmod, legacy_ebpf, universal_ebpf (Linux Kernel ≥ 5. 8))
+
+cluster:
+  resources:
+    requests:
+      # The CPU request for the cluster shield
+      cpu: 50m
+      # The memory request for the cluster shield
+      memory: 324Mi
+    limits:
+      # The CPU limit for the cluster shield
+      cpu: 1500m
+      # The memory limit for the cluster shield
+      memory: 1536Mi
+  replica_count: 1

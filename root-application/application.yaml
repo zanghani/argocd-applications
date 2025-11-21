@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sysdig-agent
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.sysdig.com            
+    chart: shield                                
+    targetRevision: 1.23.2                   
+    helm:
+      valueFiles:
+        - sysdig-agent/values.yaml                             
+      parameters: []                               
+    path: ""           
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sysdig-agent
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
