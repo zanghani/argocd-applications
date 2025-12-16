@@ -51,6 +51,7 @@ features:
     kubernetes_audit:
       enabled: true # Enable Kubernetes audit logging
       use_falco: true
+      http_port: 7765
     file_integrity_monitoring:
       enabled: true
 
