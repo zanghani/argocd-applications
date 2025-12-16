@@ -50,8 +50,12 @@ features:
       enabled: true # Enable machine learning policies
     kubernetes_audit:
       enabled: true # Enable Kubernetes audit logging
+      use_falco: true
     file_integrity_monitoring:
       enabled: true
+
+  validatingwebhookconfiguration:
+    create: false
 
   investigations:
     activity_audit:
