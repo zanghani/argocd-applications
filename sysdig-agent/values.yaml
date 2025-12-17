@@ -1,5 +1,5 @@
 cluster_config:
-  name: henry-secure # The name of the cluster
+  name: zg-cluster # The name of the cluster
 
 sysdig_endpoint:
   region: us2 # Sysdig Secure instance location region. Defaults to `custom` if not specified.
