@@ -3,7 +3,7 @@ cluster_config:
 
 sysdig_endpoint:
   region: us2 # Sysdig Secure instance location region. Defaults to `custom` if not specified.
-  access_key_existing_secret: sysdig-access-key-secret
+  access_key_existing_secret: sysdig-access-key
   secure_api_token_existing_secret: sysdig-api-token
 features:
   kubernetes_metadata:
